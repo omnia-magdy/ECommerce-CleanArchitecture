@@ -7,6 +7,7 @@ builder.Services.AddDbContext<StoreContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
 
+
 // Add services to the container.
 
 builder.Services.AddControllers();
@@ -14,6 +15,20 @@ builder.Services.AddControllers();
 builder.Services.AddOpenApi();
 
 var app = builder.Build();
+
+
+using (var scope = app.Services.CreateScope())
+{
+   
+    var services = scope.ServiceProvider;
+
+  
+    var context = services.GetRequiredService<StoreContext>();
+
+  
+    await StoreContextSeed.SeedAsync(context);
+}
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

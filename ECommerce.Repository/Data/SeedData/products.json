@@ -1,0 +1,50 @@
+[
+  {
+    "Name": "Nike Air Max",
+    "Description": "Comfortable running shoes with high durability and modern design.",
+    "Price": 150.00,
+    "PictureUrl": "images/products/nike-shoes-1.png",
+    "ProductTypeId": 1,
+    "ProductBrandId": 1
+  },
+  {
+    "Name": "Adidas Sport T-Shirt",
+    "Description": "Breathable cotton t-shirt for daily workouts and sports activities.",
+    "Price": 45.50,
+    "PictureUrl": "images/products/adidas-shirt-1.png",
+    "ProductTypeId": 2,
+    "ProductBrandId": 2
+  },
+  {
+    "Name": "Puma Classic Cap",
+    "Description": "Adjustable stylish baseball cap for sun protection and casual wear.",
+    "Price": 25.00,
+    "PictureUrl": "images/products/puma-hat-1.png",
+    "ProductTypeId": 3,
+    "ProductBrandId": 3
+  },
+  {
+    "Name": "Adidas Ultraboost",
+    "Description": "Premium running shoes providing max cushioning and energy return.",
+    "Price": 180.00,
+    "PictureUrl": "images/products/adidas-shoes-1.png",
+    "ProductTypeId": 1,
+    "ProductBrandId": 2
+  },
+  {
+    "Name": "Nike Dri-FIT Shirt",
+    "Description": "Moisture-wicking athletic shirt designed to keep you cool and dry.",
+    "Price": 50.00,
+    "PictureUrl": "images/products/nike-shirt-1.png",
+    "ProductTypeId": 2,
+    "ProductBrandId": 1
+  },
+  {
+    "Name": "Nike Heritage Bucket Hat",
+    "Description": "Classic bucket hat made with soft, lightweight durable fabric.",
+    "Price": 30.00,
+    "PictureUrl": "images/products/nike-hat-1.png",
+    "ProductTypeId": 3,
+    "ProductBrandId": 1
+  }
+]
