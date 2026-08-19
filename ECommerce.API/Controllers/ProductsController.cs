@@ -1,6 +1,8 @@
-﻿using ECommerce.Core.Interfaces;
+﻿using AutoMapper;
+using ECommerce.Core.Interfaces;
 using ECommerce.Core.Models;
 using ECommerce.Core.Specifications;
+using ECommerce.Repository.DTOs;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -13,16 +15,19 @@ namespace ECommerce.API.Controllers
         private readonly IGenericRepository<Product> _productsRepo;
         private readonly IGenericRepository<ProductBrand> _brandsRepo;
         private readonly IGenericRepository<ProductType> _typesRepo;
+        private readonly IMapper _mapper;
 
-       
+
         public ProductsController(
             IGenericRepository<Product> productsRepo,
             IGenericRepository<ProductBrand> brandsRepo,
-            IGenericRepository<ProductType> typesRepo)
+            IGenericRepository<ProductType> typesRepo,
+            IMapper mapper)
         {
             _productsRepo = productsRepo;
             _brandsRepo = brandsRepo;
             _typesRepo = typesRepo;
+            _mapper = mapper;
         }
 
         [HttpGet]
@@ -30,8 +35,9 @@ namespace ECommerce.API.Controllers
         {
             var spec = new ProductsWithTypesAndBrandsSpecification();
             var products = await _productsRepo.GetAllWithSpecAsync(spec);
+            var data = _mapper.Map<IReadOnlyList<Product>, IReadOnlyList<ProductToReturnDto>>(products);
 
-            return Ok(products);
+            return Ok(data);
         }
 
         [HttpGet("{id}")]
@@ -41,8 +47,7 @@ namespace ECommerce.API.Controllers
             var product = await _productsRepo.GetEntityWithSpecAsync(spec);
 
             if (product == null) return NotFound();
-
-            return Ok(product);
+            return Ok(_mapper.Map<Product, ProductToReturnDto>(product));
         }
 
 

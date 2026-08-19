@@ -1,7 +1,9 @@
+using ECommerce.API.Helpers;
 using ECommerce.Core.Interfaces;
 using ECommerce.Repository.Data;
 using ECommerce.Repository.Repos;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using Scalar.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,8 +12,8 @@ builder.Services.AddDbContext<StoreContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
-
-
+builder.Services.AddAutoMapper(cfg => cfg.AddMaps(typeof(MappingProfiles).Assembly));
+builder.Services.AddTransient<ProductUrlResolver>();
 // Add services to the container.
 
 builder.Services.AddControllers();
@@ -46,5 +48,6 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+app.UseStaticFiles();
 
 app.Run();
